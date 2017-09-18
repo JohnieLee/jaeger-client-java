@@ -32,6 +32,7 @@ public class TracingUtils {
   }
 
   public static ExecutorService tracedExecutor(ExecutorService wrappedExecutorService) {
-    return new TracedExecutorService(wrappedExecutorService, traceContext);
+    return (wrappedExecutorService instanceof TracedExecutorService) ? wrappedExecutorService 
+        : new TracedExecutorService(wrappedExecutorService, traceContext);
   }
 }
